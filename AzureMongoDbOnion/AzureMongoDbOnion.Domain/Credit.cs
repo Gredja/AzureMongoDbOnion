@@ -17,5 +17,10 @@ namespace AzureMongoDbOnion.Domain
         public bool Active { get; set; } = true;
 
         public string Comment { get; set; }
+
+        public override string ToString()
+        {
+            return Amount.ToString();
+        }
     }
 }

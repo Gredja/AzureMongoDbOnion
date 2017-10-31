@@ -14,8 +14,8 @@ namespace AzureMongoDbOnion.Infrastructure.Data.Helpers
             _database = new MongoClient(settings.Value.ConnectionString).GetDatabase(settings.Value.Database);
         }
 
-        public IMongoCollection<Debtor> Debtors => _database.GetCollection<Debtor>("Debtor");
+         public IMongoCollection<Debtor> Debtors => _database.GetCollection<Debtor>("Debtor");
 
-        public IMongoCollection<Credit> Credits => _database.GetCollection<Credit>("Credit");
+          public IMongoCollection<Credit> Credits => _database.GetCollection<Credit>("Credit");
     }
 }

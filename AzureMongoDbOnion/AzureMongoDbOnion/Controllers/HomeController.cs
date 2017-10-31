@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
+using AzureMongoDbOnion.Domain.Services.DbServices;
 using AzureMongoDbOnion.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using AzureMongoDbOnion.Models;
@@ -8,17 +9,17 @@ namespace AzureMongoDbOnion.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IDbRepository _repository;
+        private readonly IDebtorService _debtorService;
 
-        public HomeController(IDbRepository repository)
+        public HomeController(IDebtorService debtorService)
         {
-            _repository = repository;
+            _debtorService = debtorService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var debtors = await _repository.GetAllDebtors();
-            var credits = await _repository.GetAllCredits(true);
+            var debtors = await _debtorService.GetAll();
+          
 
             return View();
         }

@@ -8,8 +8,4 @@
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AzureMongoDbOnion.Infrastructure.Dto\AzureMongoDbOnion.Infrastructure.Dto.csproj" />
-  </ItemGroup>
-
 </Project>

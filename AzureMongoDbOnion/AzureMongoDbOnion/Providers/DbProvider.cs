@@ -1,5 +1,4 @@
-﻿using AzureMongoDbOnion.Infrastructure;
-using AzureMongoDbOnion.Infrastructure.Data;
+﻿using AzureMongoDbOnion.Domain.Services.DbServices;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AzureMongoDbOnion.Providers
@@ -8,7 +7,7 @@ namespace AzureMongoDbOnion.Providers
     {
         public static void AddDbService(this IServiceCollection services)
         {
-            services.AddTransient<IDbRepository, DbRepository>();
+            services.AddTransient<IDebtorService, DebtorService>();
         }
     }
 }
