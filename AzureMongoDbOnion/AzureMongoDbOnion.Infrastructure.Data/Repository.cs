@@ -2,17 +2,16 @@
 using System.Threading.Tasks;
 using AzureMongoDbOnion.Infrastructure.Data.Helpers;
 using AzureMongoDbOnion.Infrastructure.Data.Models;
-using AzureMongoDbOnion.Infrastructure;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
 namespace AzureMongoDbOnion.Infrastructure.Data
 {
-   public class Repository : IRepository
+    public class Repository : IRepository
     {
         private readonly MongoDbContex _context;
 
-        public Repository (IOptions<Settings> settings)
+        public Repository(IOptions<Settings> settings)
         {
             _context = new MongoDbContex(settings);
         }
@@ -22,49 +21,70 @@ namespace AzureMongoDbOnion.Infrastructure.Data
             return await _context.Debtors.Find(_ => true).ToListAsync();
         }
 
-        public Task AddOneDebtor(Dto.Debtor debtor)
+        public async Task AddOneDebtor(Dto.Debtor debtor)
         {
-            throw new System.NotImplementedException();
+            await _context.Debtors.InsertOneAsync(debtor);
         }
 
-        public Task<DeleteResult> DeleteDebtor(Dto.Debtor debtor)
+        public async Task<DeleteResult> DeleteDebtor(Dto.Debtor debtor)
         {
-            throw new System.NotImplementedException();
+            await DeleteCreditsByDebtor(debtor);
+
+            var filter = Builders<Dto.Debtor>.Filter.Eq("Id", debtor.Id);
+            return await _context.Debtors.DeleteOneAsync(filter);
         }
 
-        public Task<UpdateResult> UpdateDebtor(Dto.Debtor debtor)
+        public async Task<UpdateResult> UpdateDebtor(Dto.Debtor debtor)
         {
-            throw new System.NotImplementedException();
+            var filter = Builders<Dto.Debtor>.Filter.Eq(s => s.Id, debtor.Id);
+            var update = Builders<Dto.Debtor>.Update.Set(s => s, debtor);
+
+            return await _context.Debtors.UpdateOneAsync(filter, update);
         }
 
-        public Task<IEnumerable<Dto.Credit>> GetAllCredits(bool active)
+        public async Task<IEnumerable<Dto.Credit>> GetAllCredits(bool active)
         {
-            throw new System.NotImplementedException();
+            var filter = Builders<Dto.Credit>.Filter.Eq("Active", active);
+            return await _context.Credits.Find(filter).ToListAsync();
         }
 
-        public Task<IEnumerable<Dto.Credit>> GetCreditsByDebtor(Dto.Debtor debtor)
+        public async Task<IEnumerable<Dto.Credit>> GetCreditsByDebtor(Dto.Debtor debtor)
         {
-            throw new System.NotImplementedException();
+            var filter = Builders<Dto.Credit>.Filter.Eq(s => s.DebtorId, debtor.Id);
+            return await _context.Credits.Find(filter).ToListAsync();
         }
 
-        public Task<DeleteResult> DeleteCredit(Dto.Credit credit)
+        public async Task<DeleteResult> DeleteCredit(Dto.Credit credit)
         {
-            throw new System.NotImplementedException();
+            var filter = Builders<Dto.Credit>.Filter.Eq("Id", credit.Id);
+            return await _context.Credits.DeleteOneAsync(filter);
         }
 
-        public Task AddCredit(Dto.Credit credit)
+        public async Task AddCredit(Dto.Credit credit)
         {
-            throw new System.NotImplementedException();
+            await _context.Credits.InsertOneAsync(credit);
         }
 
-        public Task<UpdateResult> UpdateCredit(Dto.Credit credit)
+        public async Task<UpdateResult> UpdateCredit(Dto.Credit credit)
         {
-            throw new System.NotImplementedException();
+            var filter = Builders<Dto.Credit>.Filter.Eq(s => s.Id, credit.Id);
+            var update = Builders<Dto.Credit>.Update.Set(s => s, credit);
+
+            return await _context.Credits.UpdateOneAsync(filter, update);
         }
 
-        public Task<UpdateResult> RepayCredit(Dto.Credit credit)
+        public async Task<UpdateResult> RepayCredit(Dto.Credit credit)
         {
-            throw new System.NotImplementedException();
+            var filter = Builders<Dto.Credit>.Filter.Eq(s => s.Id, credit.Id);
+            var update = Builders<Dto.Credit>.Update.Set(s => s.Active, false);
+
+            return await _context.Credits.UpdateOneAsync(filter, update);
+        }
+
+        private async Task<DeleteResult> DeleteCreditsByDebtor(Dto.Debtor debtor)
+        {
+            var filter = Builders<Dto.Credit>.Filter.Eq("DebtorId", debtor.Id);
+            return await _context.Credits.DeleteManyAsync(filter);
         }
     }
 }

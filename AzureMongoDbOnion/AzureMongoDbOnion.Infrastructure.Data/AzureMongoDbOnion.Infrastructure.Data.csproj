@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AzureMongoDbOnion.Infrastructure.Dto\AzureMongoDbOnion.Infrastructure.Dto.csproj" />
     <ProjectReference Include="..\AzureMongoDbOnion.Infrastructure\AzureMongoDbOnion.Infrastructure.csproj" />
   </ItemGroup>
 
