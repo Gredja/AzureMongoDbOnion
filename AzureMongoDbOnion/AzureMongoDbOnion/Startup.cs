@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AzureMongoDbOnion.Domain.Services.DbServices;
+using AzureMongoDbOnion.Infrastructure.Data;
+using AzureMongoDbOnion.Models;
 using AzureMongoDbOnion.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,7 +27,17 @@ namespace AzureMongoDbOnion
         {
             services.AddMvc();
 
-            services.AddDbService();
+            services.Configure<Settings>(options =>
+            {
+                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
+            });
+
+            services.AddScoped<IRepository, Repository>();
+
+            services.AddTransient<IDbService, DbService>();
+
+            // services.AddDbService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

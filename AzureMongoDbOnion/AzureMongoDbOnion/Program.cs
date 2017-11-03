@@ -7,6 +7,8 @@ namespace AzureMongoDbOnion
     {
         public static void Main(string[] args)
         {
+           // var subjectProvider = new SubjectProvider();
+
             BuildWebHost(args).Run();
         }
 

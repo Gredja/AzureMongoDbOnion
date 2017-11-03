@@ -6,11 +6,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AzureMongoDbOnion.Infrastructure.Dto\AzureMongoDbOnion.Infrastructure.Dto.csproj" />
-    <ProjectReference Include="..\AzureMongoDbOnion.Infrastructure\AzureMongoDbOnion.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

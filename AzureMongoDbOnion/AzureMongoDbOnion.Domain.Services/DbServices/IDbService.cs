@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace AzureMongoDbOnion.Domain.Services.DbServices
 {
-    public interface IDbService<T> where T : class
+    public interface IDbService
     {
-        Task<IEnumerable<T>> GetAll();
+        Task<IEnumerable<Debtor>> GetAllDebtors();
     }
 }

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureMongoDbOnion", "AzureM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureMongoDbOnion.Domain", "AzureMongoDbOnion.Domain\AzureMongoDbOnion.Domain.csproj", "{10F8B400-84B8-4493-A8C0-92F92D76DBDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureMongoDbOnion.Infrastructure", "AzureMongoDbOnion.Infrastructure\AzureMongoDbOnion.Infrastructure.csproj", "{D91341E6-1600-46A4-BA8D-77559AE36DE3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureMongoDbOnion.Infrastructure.Data", "AzureMongoDbOnion.Infrastructure.Data\AzureMongoDbOnion.Infrastructure.Data.csproj", "{5F87B25A-A467-440B-94AB-1FA85F43C581}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureMongoDbOnion.Domain.Services", "AzureMongoDbOnion.Domain.Services\AzureMongoDbOnion.Domain.Services.csproj", "{2C1ACD0F-B6A3-47BA-94E4-96F9027C1C52}"
@@ -29,10 +27,6 @@ Global
 		{10F8B400-84B8-4493-A8C0-92F92D76DBDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10F8B400-84B8-4493-A8C0-92F92D76DBDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10F8B400-84B8-4493-A8C0-92F92D76DBDC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D91341E6-1600-46A4-BA8D-77559AE36DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D91341E6-1600-46A4-BA8D-77559AE36DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D91341E6-1600-46A4-BA8D-77559AE36DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D91341E6-1600-46A4-BA8D-77559AE36DE3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F87B25A-A467-440B-94AB-1FA85F43C581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F87B25A-A467-440B-94AB-1FA85F43C581}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F87B25A-A467-440B-94AB-1FA85F43C581}.Release|Any CPU.ActiveCfg = Release|Any CPU

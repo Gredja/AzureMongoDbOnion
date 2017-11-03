@@ -7,7 +7,7 @@ namespace AzureMongoDbOnion.Providers
     {
         public static void AddDbService(this IServiceCollection services)
         {
-            services.AddTransient<IDebtorService, DebtorService>();
+            services.AddTransient<IDbService, DbService>();
         }
     }
 }

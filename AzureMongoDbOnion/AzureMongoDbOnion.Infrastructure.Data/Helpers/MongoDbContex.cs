@@ -1,5 +1,4 @@
 ﻿using AzureMongoDbOnion.Infrastructure.Data.Models;
-using AzureMongoDbOnion.Infrastructure.Dto;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
@@ -14,8 +13,8 @@ namespace AzureMongoDbOnion.Infrastructure.Data.Helpers
             _database = new MongoClient(settings.Value.ConnectionString).GetDatabase(settings.Value.Database);
         }
 
-         public IMongoCollection<Debtor> Debtors => _database.GetCollection<Debtor>("Debtor");
+         public IMongoCollection<Dto.Debtor> Debtors => _database.GetCollection<Dto.Debtor>("Debtor");
 
-          public IMongoCollection<Credit> Credits => _database.GetCollection<Credit>("Credit");
+          public IMongoCollection<Dto.Credit> Credits => _database.GetCollection<Dto.Credit>("Credit");
     }
 }
